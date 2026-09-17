@@ -1,110 +1,98 @@
-// HTML elemanlarımızı DOM'dan yakalıyoruz
-const hayirButonu = document.getElementById("hayir-btn");
-const evetButonu = document.getElementById("evet-btn");
-const teklifEkrani = document.getElementById("teklif-ekrani");
-const detayEkrani = document.getElementById("detay-ekrani");
-const takvimEkrani = document.getElementById("takvim-ekrani");
-const onaylaBtn = document.getElementById("onayla-btn");
+const noButton = document.getElementById("no-btn");
+const yesButton = document.getElementById("yes-btn");
+const proposalScreen = document.getElementById("proposal-screen");
+const detailScreen = document.getElementById("detail-screen");
+const calendarScreen = document.getElementById("calendar-screen");
+const confirmBtn = document.getElementById("confirm-btn");
 
-// Seçimleri hafızada tutacağımız değişkenler (State)
-let secilenYemek = "";
-let secilenTarih = "";
-let secilenSaat = "";
+let selectedFood = "";
+let selectedDate = "";
+let selectedTime = "";
 
-// 1. HAYIR BUTONU: Fare yaklaşınca ekranda süzülerek kaçma mantığı
-hayirButonu.addEventListener("mouseover", () => {
-    hayirButonu.style.position = "absolute";
-    const guvenliX = Math.random() * (window.innerWidth - hayirButonu.offsetWidth);
-    const guvenliY = Math.random() * (window.innerHeight - hayirButonu.offsetHeight);
-    hayirButonu.style.left = guvenliX + "px";
-    hayirButonu.style.top = guvenliY + "px";
+noButton.addEventListener("mouseover", () => {
+    noButton.style.position = "absolute";
+    const safeX = Math.random() * (window.innerWidth - noButton.offsetWidth);
+    const safeY = Math.random() * (window.innerHeight - noButton.offsetHeight);
+    noButton.style.left = safeX + "px";
+    noButton.style.top = safeY + "px";
 });
 
-// 2. EVET BUTONU: Teklif ekranını kapatıp yemek seçim ekranını açar
-evetButonu.addEventListener("click", function() {
-    teklifEkrani.style.display = "none";
-    detayEkrani.style.display = "block"; 
+yesButton.addEventListener("click", function() {
+    proposalScreen.style.display = "none";
+    detailScreen.style.display = "block"; 
 });
 
-// 3. YEMEK SEÇİMİ: Yemek kartlarına tıklanınca veriyi kaydet ve takvime geç
-const yemekKartlari = document.querySelectorAll(".yemek-karti");
-yemekKartlari.forEach(kutu => {
-    kutu.addEventListener("click", () => {
-        secilenYemek = kutu.querySelector("p").innerText;
+const foodCards = document.querySelectorAll(".food-card");
+foodCards.forEach(box => {
+    box.addEventListener("click", () => {
+        selectedFood = box.querySelector("p").innerText;
         
-        // Yemek ekranını gizle, takvim ekranını aç
-        detayEkrani.style.display = "none";
-        takvimEkrani.style.display = "block";
+        detailScreen.style.display = "none";
+        calendarScreen.style.display = "block";
         
-        // Dinamik 7 günlük takvimi üret
-        takvimOlustur();
+        generateCalendar();
     });
 });
 
-// Kontrol Mekanizması: Tarih ve saat seçildiyse onay butonunu görünür yap
-function kontrolEtVeGoster() {
-    if (secilenTarih !== "" && secilenSaat !== "") {
-        onaylaBtn.style.display = "block";
+function checkAndShow() {
+    if (selectedDate !== "" && selectedTime !== "") {
+        confirmBtn.style.display = "block";
     }
 }
 
-// Görsel Geri Bildirim: Seçilen butonları pembe yapmak için yardımcı fonksiyon
-function butonSecimiTemizle(butonListesi) {
-    butonListesi.forEach(b => b.classList.remove("secili-zaman"));
+function clearButtonSelection(buttonList) {
+    buttonList.forEach(b => b.classList.remove("selected-time"));
 }
 
-// 4. TAKVİM MOTORU: Bugünden itibaren önümüzdeki 7 günü otomatik hesaplar
-function takvimOlustur() {
-    const tarihAlani = document.getElementById("tarih-secenekleri");
-    tarihAlani.innerHTML = ""; 
+function generateCalendar() {
+    const dateArea = document.getElementById("date-options");
+    dateArea.innerHTML = ""; 
     
-    const aylar = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     
     for(let i = 0; i < 7; i++) {
-        let bugun = new Date();
-        bugun.setDate(bugun.getDate() + i); 
+        let today = new Date();
+        today.setDate(today.getDate() + i); 
         
-        let gunNo = bugun.getDate();
-        let ayIsmi = aylar[bugun.getMonth()];
+        let dayNo = today.getDate();
+        let monthName = months[today.getMonth()];
         
-        let buton = document.createElement("button");
-        buton.className = "zaman-karti tarih-btn";
-        buton.innerText = gunNo + " " + ayIsmi;
+        let button = document.createElement("button");
+        button.className = "time-card date-btn";
+        button.innerText = dayNo + " " + monthName;
         
-        buton.addEventListener("click", () => {
-            secilenTarih = buton.innerText;
-            const tumTarihButonlari = document.querySelectorAll(".tarih-btn");
-            butonSecimiTemizle(tumTarihButonlari);
-            buton.classList.add("secili-zaman");
+        button.addEventListener("click", () => {
+            selectedDate = button.innerText;
+            const allDateButtons = document.querySelectorAll(".date-btn");
+            clearButtonSelection(allDateButtons);
+            button.classList.add("selected-time");
             
-            kontrolEtVeGoster();
+            checkAndShow();
         });
         
-        tarihAlani.appendChild(buton); 
+        dateArea.appendChild(button); 
     }
 }
 
-// 5. SAAT SEÇİMİ: Saat butonlarına tıklama mantığı
-const saatButonlari = document.querySelectorAll(".saat-btn");
-saatButonlari.forEach(buton => {
-    buton.addEventListener("click", () => {
-        secilenSaat = buton.innerText;
-        butonSecimiTemizle(saatButonlari);
-        buton.classList.add("secili-zaman");
+const timeButtons = document.querySelectorAll(".time-btn");
+timeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        selectedTime = button.innerText;
+        clearButtonSelection(timeButtons);
+        button.classList.add("selected-time");
         
-        kontrolEtVeGoster();
+        checkAndShow();
     });
 });
 
-// 6. FİNAL: E-posta (Mailto) Yönlendirmesi
-onaylaBtn.addEventListener("click", () => {
-    const emailAdresin = "be.my.date@mail2world.com"; 
-    const konu = "Teklifin Cevabı! 💌";
-    const mesaj = `Sürprizini gördüm! 💖 Menümüz ${secilenYemek}, ${secilenTarih} saat ${secilenSaat}'te buluşuyoruz, heyecanla bekliyorum!`;
+confirmBtn.addEventListener("click", () => {
+    const emailAddress = "be.my.date@mail2world.com"; 
+    const subject = "Proposal Response! 💌";
+    const message = `I saw your surprise! 💖 Our menu is ${selectedFood}, we are meeting on ${selectedDate} at ${selectedTime}, I'm looking forward to it with excitement!`;
     
-    const encodeEdilmisKonu = encodeURIComponent(konu);
-    const encodeEdilmisMesaj = encodeURIComponent(mesaj);
+    const encodedSubject = encodeURIComponent(subject);
+    const encodedMessage = encodeURIComponent(message);
     
-    const mailtoLink = `mailto:${emailAdresin}?subject=${encodeEdilmisKonu}&body=${encodeEdilmisMesaj}`;
+    const mailtoLink = `mailto:${emailAddress}?subject=${encodedSubject}&body=${encodedMessage}`;
     window.location.href = mailtoLink;
 });
