@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sürpriz!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <div class="konteyner" id="teklif-ekrani">
+        <!-- Yalvaran tatlı kedi GIF'i -->
+        <img src="https://media1.tenor.com/m/MKkJWYigjycAAAAd/cute-cat-cat-cute.gif" alt="Sevimli Kedi" id="kedi-gif">
+        
+        <h1>Benimle Çıkar Mısın?</h1>
+        
+        <button id="evet-btn">Evet! 💖</button>
+        <button id="hayir-btn">Hayır 🏃‍♀️</button>
+    </div>
+
+
+
+<!-- 2. Ekran: Yemek Seçimi (Başlangıçta gizli) -->
+    <div class="konteyner" id="detay-ekrani">
+        <h2>Ne Yiyelim? 😋</h2>
+        
+        <!-- Yemek kartlarını yan yana dizeceğimiz ızgara (grid/flex) alanı -->
+        <div class="yemek-secenekleri">
+            
+            <!-- 1. Seçenek: Sushi -->
+            <button class="yemek-karti" id="secim-sushi">
+                <img src="https://i.pinimg.com/736x/b9/f1/d6/b9f1d68b1357efdecaa83807ffefdae3.jpg " alt="Sushi">
+                <p>Sushi</p>
+            </button>
+
+            <!-- 2. Seçenek: Pizza -->
+            <button class="yemek-karti" id="secim-pizza">
+                <img src="https://static.vecteezy.com/system/resources/previews/009/955/768/non_2x/pixel-art-pizza-with-pepperoni-and-cheese-8bit-game-icon-on-white-background-vector.jpg " alt="Pizza">
+                <p>Pizza</p>
+            </button>
+
+            <!-- 3. Seçenek: Hamburger -->
+            <button class="yemek-karti" id="secim-burger">
+                <img src="https://static.vecteezy.com/system/resources/previews/009/877/912/non_2x/pixel-art-burger-and-soda-x-burger-fast-food-icon-for-8bit-game-on-white-background-vector.jpg " alt="Burger">
+                <p>Burger</p>
+            </button>
+
+            <button class="yemek-karti" id="secim-makarna">
+               <img src=" https://i.pinimg.com/736x/2a/ae/8d/2aae8df1cf7c40283df15673358b6e49.jpg" alt="Makarna">
+               <p>Makarna</p>
+             </button>
+
+        </div>
+    </div>
+
+    <!-- 3. Ekran: Takvim ve Saat (Başlangıçta gizli) -->
+    <div class="konteyner" id="takvim-ekrani">
+        <h2>Ne Zaman? 📅</h2>
+        
+        <!-- Javascript ile buraya önümüzdeki 7 günü otomatik basacağız -->
+        <div id="tarih-secenekleri" class="secenek-grubu"></div>
+
+        <h2>Saat Kaçta? ⏰</h2>
+        <div id="saat-secenekleri" class="secenek-grubu">
+            <!-- Saatleri sabit veriyoruz -->
+            <button class="zaman-karti saat-btn">18:00</button>
+            <button class="zaman-karti saat-btn">19:00</button>
+            <button class="zaman-karti saat-btn">20:00</button>
+            <button class="zaman-karti saat-btn">21:00</button>
+        </div>
+        
+        <!-- En son her şeyi WhatsApp'a yollayacak buton -->
+        <button id="onayla-btn" style="display: none;">Teklifi Tamamla 💌</button>
+    </div>
+    
+<script src="script.js"></script>
+</body>
+</html>
