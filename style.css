@@ -31,6 +31,12 @@ body {
     margin-bottom: 15px;
 }
 
+h3 {
+    font-family: 'Poppins', sans-serif;
+    color#ff4d6d;
+    font-size: 0.5rem;
+    font-weight: 100;
+    margin-top: 0; }
 h1 {
     font-family: 'Poppins', sans-serif;
     color: #ff4d6d;
