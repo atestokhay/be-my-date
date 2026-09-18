@@ -86,13 +86,13 @@ timeButtons.forEach(button => {
 });
 
 confirmBtn.addEventListener("click", () => {
-    const emailAddress = "be.my.date@mail2world.com"; 
+    const phoneNumber = "905372548545"; 
     const subject = "Proposal Response! 💌";
     const message = `I saw your surprise! 💖 Our menu is ${selectedFood}, we are meeting on ${selectedDate} at ${selectedTime}, I'm looking forward to it with excitement!`;
     
     const encodedSubject = encodeURIComponent(subject);
     const encodedMessage = encodeURIComponent(message);
     
-    const mailtoLink = `mailto:${emailAddress}?subject=${encodedSubject}&body=${encodedMessage}`;
-    window.location.href = mailtoLink;
+    const whatsappLink = `https://wa.me/${emailAddress}?subject=${encodedSubject}&body=${encodedMessage}`;
+    window.location.href = whatsappLink;
 });
