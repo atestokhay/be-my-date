@@ -82,23 +82,24 @@ button {
 
 h3 {
     font-family: 'Poppins', sans-serif;
-    color: white;
-    font-size: 0.9rem; 
-    font-weight: 100;
+    color: #ff4d6d; /* Sayfa arkasındaki puantiyelerde görünsün diye pembe yaptık */
+    font-size: 0.7rem; 
+    font-weight: 400;
     text-align: center;  
     position: absolute;  
-    bottom: 10px;      
+    bottom: 10px;        
     left: 50%;
     transform: translateX(-50%); 
     margin: 0;
 }
 
-#detail-screen
-{display: none; }
+#detail-screen {
+    display: none; 
+}
 
 h2 {
     font-family: 'Poppins', sans-serif;
-    color: white;
+    color: #ff4d6d; /* Beyaz yerine pembe yaptık ki kutunun içinde okunsun */
     font-size: 2.5rem;
     font-weight: 700;
     margin-top: 0;
