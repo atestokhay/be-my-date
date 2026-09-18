@@ -11,4 +11,4 @@ A cute, interactive web project built to ask someone out with a playful retro de
 1. Clone or download this repository.
 2. Open `script.js` and update the placeholder email with your own:
    ```javascript
-   const emailAdresin = "your-email@domain.com";
+   const emailAdress = "your-email@domain.com";
