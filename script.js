@@ -93,6 +93,6 @@ confirmBtn.addEventListener("click", () => {
     const encodedSubject = encodeURIComponent(subject);
     const encodedMessage = encodeURIComponent(message);
     
-    const whatsappLink = `https://wa.me/${905372548545}?subject=${encodedSubject}&body=${encodedMessage}`;
+    const whatsappLink = `https://wa.me/${905372548545}?text=${encodedSubject}&body=${encodedMessage}`;
     window.location.href = whatsappLink;
 });
