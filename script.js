@@ -86,13 +86,13 @@ timeButtons.forEach(button => {
 });
 
 confirmBtn.addEventListener("click", () => {
-    const phoneNumber = "905372548545"; 
+    const phoneNumber = "YOUR_NUMBER"; 
     const subject = "Proposal Response!";
     const message = `I saw your surprise! Our menu is ${selectedFood}, we are meeting on ${selectedDate} at ${selectedTime}, I'm looking forward to it with excitement!`;
     
     const encodedSubject = encodeURIComponent(subject);
     const encodedMessage = encodeURIComponent(message);
     
-    const whatsappLink = `https://wa.me/905372548545?text=${encodedMessage}`;
+    const whatsappLink = `https://wa.me/YOUR_NUMBER?text=${encodedMessage}`;
     window.location.href = whatsappLink;
 });
